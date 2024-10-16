@@ -1,0 +1,10 @@
+pip install img2table
+LatexOCR
+python-docx
+pip3 install --upgrade tensorflow-gpu --user
+polars-lts-cpu
+pip install polars-lts-cpu
+
+
+// links :
+https://pypi.org/project/polars-lts-cpu/
