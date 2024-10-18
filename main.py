@@ -1,15 +1,17 @@
 import io
+import docx2txt
 import pytesseract
 import cv2
 import pandas as pd
 # import docx 
 # from docx.shared import Pt
-from docx import Document 
+from docx import Document
+# from docx import * 
 from PIL import Image
 from pix2tex.cli import LatexOCR
 # from curses import ascii
 import subprocess
-from img2table.document import Image
+from img2table.document import Image as imgs
 from img2table.ocr import TesseractOCR
 from collections import OrderedDict
 
@@ -51,14 +53,11 @@ def extract_text(image_path):
   text = pytesseract.image_to_string(gray,config=myconfig)
 
 #   print("Extracted Text:\n", text)
-  # doc = docx.Document() 
-  # doc.add_paragraph(text)
-  # doc.save('new_file.docx')
   return img, text
 
 
 def image_formula_to_text(image_path):
-    img = Image('captured_image.jpg')
+    img = Image.open('captured_image.jpg')
     model = LatexOCR()
     letx = model(img)
     print(letx)
@@ -77,7 +76,6 @@ def get_docx(text):
 
 def valid_xml_char_ordinal(c):
     codepoint = ord(c)
-    # conditions ordered by presumed frequency
     return (
         0x20 <= codepoint <= 0xD7FF or
         codepoint in (0x9, 0xA, 0xD) or
@@ -94,7 +92,6 @@ def valid_xml_char_ordinal(c):
 
 def latex_to_docx(input_file, output_file):
     try:
-        # Command to run Pandoc
         subprocess.run(['pandoc', input_file, '-o', output_file], check=True)
         print(f"Conversion successful: {output_file}")
     except subprocess.CalledProcessError as e:
@@ -113,10 +110,10 @@ def create_Latex_File(text):
 
 def img_to_excel(img_path):
     ocr = TesseractOCR(n_threads=1, lang="eng")
-    img = Image(src='captured_image.jpg')
+    img = imgs(src='captured_image.jpg')
     image_tables = img.extract_tables(ocr=ocr,implicit_rows=False,
                                       implicit_columns=False,
-                                      borderless_tables=False,min_confidence=70)
+                                      borderless_tables=True,min_confidence=70)
     print(image_tables)
     data = extracting_table_value(image_tables[0].content.values())
     # print(data)
@@ -142,3 +139,7 @@ def extracting_table_value(tables):
    print('values is : ',values)
    return values 
 
+def copy_docx():
+   text = docx2txt.process("latexFile_doc.docx")
+   print(text)
+   return text

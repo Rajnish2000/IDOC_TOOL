@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import streamlit as st
 import main
-
+from pylatexenc.latex2text import LatexNodes2Text
 
 #ui
 st.title("IDOC Tools.")
@@ -146,10 +146,12 @@ if uploaded_file is not None:
         \\end{{document}}
             """
     main.create_Latex_File(latex_content)
-    st.download_button("Download Text File", text, file_name="latexFile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)
-    st.download_button("Download Latex Code", main.get_docx(letx), file_name="latexFile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)
-    st.download_button("Download docx File", "", file_name="latexFile_doc.docx", mime="docx")  
     main.latex_to_docx('sampleLatTexFile.tex','latexFile_doc.docx')
+    doc_text = main.copy_docx()
+    res = LatexNodes2Text().latex_to_text(latex_content)
+    st.download_button("Download Text File", res, file_name="latexFile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)
+    st.download_button("Download Latex Code", main.get_docx(letx), file_name="latexFile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)
+    st.download_button("Download docx File", main.get_docx(res), file_name="latexFile_doc.docx", mime="docx")  
 
 st.divider()
 
