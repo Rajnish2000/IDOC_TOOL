@@ -5,3 +5,5 @@ pytesseract==0.3.10
 streamlit==1.33.0
 opencv-contrib-python==4.10.0.84
 img2table==1.3.0
+torchvision==0.20.0
+torch==2.5.0
