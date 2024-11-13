@@ -28,6 +28,12 @@ Make sure you have these libraries installed in your Python environment before r
    ```
 3. [Download](https://github.com/tesseract-ocr/tesseract) and install Tesseract OCR. Make sure to add the Tesseract binary path to the script (`main.py`) where indicated.
 
+4. Do setup of Latex OCR by going through [from here](https://github.com/lukas-blecher/LaTeX-OCR)
+5. do Installation of polars-lts-cpu [link](https://pypi.org/project/polars-lts-cpu/)
+   ```
+   pip install polars-lts-cpu
+   ```
+
 ### Tesseract Path:
 
 - Edit the line pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe' in app.py to point to the correct path of your Tesseract executable on your system.
@@ -63,8 +69,8 @@ Once the Streamlit server starts, you can access the application via your web br
 - **main.py**: Main Python script containing the text extraction logic.
 - **requirements.txt**: File containing the required Python libraries.
 
-## Contributions
+<!-- ## Contributions
 
-Contributions to improve the functionality, efficiency, or documentation of this application are welcome. Feel free to submit a pull request with your changes.
+Contributions to improve the functionality, efficiency, or documentation of this application are welcome. Feel free to submit a pull request with your changes. -->
 
 ## Thankyou!
