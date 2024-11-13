@@ -13,7 +13,6 @@ from pix2tex.cli import LatexOCR
 import subprocess
 from img2table.document import Image as imgs
 from img2table.ocr import TesseractOCR
-from collections import OrderedDict
 
 
 #add your tesseract path here 
