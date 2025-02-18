@@ -7,7 +7,7 @@ from pylatexenc.latex2text import LatexNodes2Text
 #ui
 st.title("IDOC Tools.")
 st.header("Text Extraction from Image")
-
+count = 12
 
 #for camera input
 st.subheader("Camera Input")
@@ -80,7 +80,7 @@ if uploaded_file is not None:
     st.subheader("Extracted Text:")
     st.code(text)
     
-    st.download_button("Download text File", text, file_name="newfile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
+    st.download_button("Download text File", text, file_name="newfile.txt", mime=None, key=count+'dls2s', help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
     st.download_button("Download docx File", main.get_docx(text), file_name="newfile_doc.docx", mime="docx")
 st.divider()
 
@@ -196,8 +196,8 @@ if uploaded_file is not None:
     table_data = main.img_to_excel(processed_image)
     st.table(table_data)
     csv_data = table_data.to_csv(index=False).encode("utf-8")
-    st.download_button("Download text File", csv_data, file_name="newfile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
-    st.download_button("Download Excel File", csv_data, file_name="newExcelFile_excel.csv", mime="text/csv")
+    st.download_button("Download text File", csv_data, file_name="newfile.txt", mime=None, key=str(count)+'sdfw', help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
+    st.download_button("Download Excel File", csv_data, file_name="newExcelFile_excel.csv",key=str(count*2)+'sdfw', mime="text/csv")
 st.divider()
 
 
