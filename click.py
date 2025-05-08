@@ -80,7 +80,7 @@ if uploaded_file is not None:
     st.subheader("Extracted Text:")
     st.code(text)
     
-    st.download_button("Download text File", text, file_name="newfile.txt", mime=None, key=count+'dls2s', help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
+    st.download_button("Download text File", text, file_name="newfile.txt", mime=None, key='dls2s', help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
     st.download_button("Download docx File", main.get_docx(text), file_name="newfile_doc.docx", mime="docx")
 st.divider()
 
