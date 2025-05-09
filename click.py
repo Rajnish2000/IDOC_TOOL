@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import streamlit as st
 import main
+import google_cloud_vision
 from pylatexenc.latex2text import LatexNodes2Text
 
 #ui
@@ -201,6 +202,46 @@ if uploaded_file is not None:
 st.divider()
 
 
+#add to upload Handwritten Text img from user
+st.header("File Input - Handwritten Text Image")
+
+uploaded_file = st.file_uploader("Upload_handwritten image:",type=["jpg","png","jpeg"]) 
+
+if uploaded_file is None:
+    st.write("NO image is Uploaded!!")
+
+if uploaded_file is not None:
+    bytes_data = uploaded_file.read()
+
+    # Convert bytes to a NumPy array
+    np_array = np.frombuffer(bytes_data, np.uint8)
+
+    # Decode the NumPy array as a OpenCV image (BGR color space)
+    image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
+    
+    # Save the image to a specified location
+    temp_image_path="captured_image.jpg"
+    cv2.imwrite(temp_image_path,image)
+    
+    #creating columns
+    one,two =st.columns(2)
+
+    # Display the uploaded image
+    with one:
+        st.image(uploaded_file, caption='Uploaded Image')
+        st.write("Image saved successfully.")
+    
+    processed_image, text = main.extract_text(temp_image_path)
+    with two:
+        st.image(processed_image, caption='Processed Image')
+        st.write("Image Processed.")
+    st.subheader("Extracted Handwritten Text:")
+    handWritten_text = google_cloud_vision.detect_text(temp_image_path)
+    st.subheader("Extracted Text:")
+    st.code(handWritten_text)
+    st.download_button("Download text File", handWritten_text, file_name="newfile.txt", mime=None, key=str(count)+'tere', help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)   
+    st.download_button("Download Docs File", main.get_docx(handWritten_text), file_name="newDocs.docx",key=str(count*3)+'ertgfd', mime="text/docx")
+st.divider()
 
 
 

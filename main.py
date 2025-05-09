@@ -4,7 +4,6 @@ import pytesseract
 import cv2
 import pandas as pd
 # import docx 
-# from docx.shared import Pt
 from docx import Document
 # from docx import * 
 from PIL import Image
