@@ -1,0 +1,26 @@
+/* Basic styling */
+h1 {
+  text-align: center;
+  color: #4caf50;
+}
+
+[data-testid="stSidebar"] {
+  background-color: #eeeeee;
+}
+
+.main {
+  padding: 2rem;
+}
+/* .stMain {
+  background-color: #3b3939;
+} */
+[kind="headerNoPadding"] {
+  color: black;
+}
+
+.stButton > button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+}
