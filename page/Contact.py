@@ -1,9 +1,7 @@
 import streamlit as st
+from utils.background import set_background
 
 def app():
-    # st.set_page_config(page_title="Contact")
-    st.title("📬 Contact Us")
-
     # Inject styles and layout
     st.markdown("""
         <style>
@@ -11,7 +9,6 @@ def app():
             max-width: 600px;
             margin: auto;
             padding: 2rem;
-            background-color: white;
             border-radius: 20px;
             box-shadow: 0 12px 32px rgba(0,0,0,0.1);
             font-family: 'Segoe UI', sans-serif;
@@ -73,9 +70,9 @@ def app():
     """, unsafe_allow_html=True)
 
     # Form UI
-    st.markdown('<div class="contact-container">', unsafe_allow_html=True)
-    st.markdown("## 📬 Contact Us")
-    st.markdown("Have any questions? Fill out the form below and we’ll get back to you.")
+    st.title("📬 Contact Us")
+    set_background("assets/light_background_1.png")
+    st.markdown('<div class="contact-container">Have any questions? Fill out the form below and we’ll get back to you.', unsafe_allow_html=True)
 
     name = st.text_input("Your Name")
     email = st.text_input("Your Email")

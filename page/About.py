@@ -1,13 +1,14 @@
 import streamlit as st
 from PIL import Image
-
 import streamlit as st
+from utils.background import set_background
 
 def app():
     # st.subheader('share their valuable thoughts with the world')
     # st.set_page_config(page_title="About")
     # st.set_page_config(page_title="About - I-Doc-Tool", layout="wide")
-    st.title("📘 About I-Doc-Tool")
+    st.title("📘 About :violet[I-DOC-TOOL]")
+    set_background("assets/light_background_1.png")
     st.markdown("### Your Smart Document Assistant")
 
     # Hero section
@@ -52,9 +53,9 @@ def app():
     st.markdown("## 🛠️ Built With Modern Tech")
     st.markdown("""
     - **Frontend**: [Streamlit](https://streamlit.io) with responsive layout  
-    - **Backend**: Python, Firebase (Auth + Firestore)  
+    - **Backend**: Python, Firebase (Auth + Firestore), Tesseract OCR, OpenCV.  
     - **Authentication**: Firebase Auth and session management  
-    - **AI Support**: Integrated with GPT for smart summarization (optional)  
+    - **AI Support**: Integrated with Deep based OCR for exact Extraction (optional)  
     """)
 
     # Vision

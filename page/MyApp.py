@@ -247,3 +247,7 @@ def app():
 
 
     st.write("Made with 🧠 and 🍯 by IDOC teams 🐝")
+
+
+
+# https://extras.streamlit.app/

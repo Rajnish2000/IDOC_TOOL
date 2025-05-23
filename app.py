@@ -17,15 +17,14 @@ with open("utils/styles.css") as f:
 optionsList = ['Home','Accounts','SignUp','Login','About','Contacts']
 
 if 'user' in st.session_state:
-    st.sidebar.success(f"Hi., {st.session_state['user']['email']}!")
+    st.sidebar.success(f"Hi., {st.session_state['user']['displayName'] if st.session_state['user']['displayName'] != '' else st.session_state['user']['email']}!")
     optionsList.remove("Home")
     optionsList.append("Logout")
-    optionsList.insert(1,'MyApp')
+    optionsList.insert(0,'MyApp')
     optionsList.remove("Login")
     optionsList.remove("Contacts")
     optionsList.remove("About")
     optionsList.remove("SignUp")
-    print(st.session_state)
     
 if 'user' not in st.session_state:
     optionsList.remove('Accounts')
@@ -60,7 +59,8 @@ class MultiApp:
         if app == 'MyApp':
             myapp.app()
         if app == 'Accounts':
-            account.app()
+            if 'user' in st.session_state:
+                account.app(st.session_state['user'])
         if app == 'About':
             about.app()
         if app == 'Contacts':

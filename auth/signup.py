@@ -1,6 +1,6 @@
 import streamlit as st
 from firebase_auth import auth, db
-import bcrypt
+
 
 def signup():
     st.title('Sign Up to :violet[I-DOC] :sunglasses:')
@@ -16,6 +16,17 @@ def signup():
                     user = auth.create_user_with_email_and_password(new_email, new_password)
                     uid = user['localId']
                     db.collection("users").document(uid).set({"email": new_email})
+                    
+                    # adding details for the profile page also.
+                    profile_ref = db.collection('users').document(uid).collection("profile").document("info")
+                    
+                    profile_data = profile_ref.get().to_dict() or {}
+                    profile_ref.set({
+                        "name": '',
+                        "email": new_email,
+                        "notify": False,
+                        "password": new_password if new_password else profile_data.get("password")
+                    })
                     st.success("Account created. Please log in.")
                     st.balloons()
                 else:

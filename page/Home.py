@@ -1,70 +1,6 @@
 import streamlit as st
 from PIL import Image
-import base64
-
-# def set_background(image_path):
-#     with open(image_path, "rb") as f:
-#         base64_img = base64.b64encode(f.read()).decode()
-#     st.markdown(
-#         f"""
-#         <style>
-#         .stApp {{
-#             background-image: url("data:image/png;base64,{base64_img}");
-#             background-size: cover;
-#             background-attachment: fixed;
-#         }}
-#         .big-font {{
-#             font-size: 30px !important;
-#             color: #013A63;
-#         }}
-#         .subtle-box {{
-#             background-color: rgba(255,255,255,0.85);
-#             padding: 2rem;
-#             border-radius: 1rem;
-#             box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
-#         }}
-#         </style>
-#         """,
-#         unsafe_allow_html=True
-#     )
-
-# Custom background CSS (Optional)
-def set_background(image_path):
-    with open(image_path, "rb") as f:
-        base64_img = base64.b64encode(f.read()).decode()
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/png;base64,{base64_img}");
-            background-size: cover;
-            background-attachment: fixed;
-            font-family: 'Segoe UI', sans-serif;
-        }}
-        .big-font {{
-            font-size: 40px !important;
-            color: #012a4a;
-            font-weight: bold;
-        }}
-        .subtle-box {{
-            background-color: rgba(255,255,255,0.95);
-            padding: 2.5rem;
-            border-radius: 1.2rem;
-            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-        }}
-        ul li {{
-            margin: 0.4rem 0;
-            font-size: 17px;
-        }}
-        button:hover {{
-            background-color: #ffc300 !important;
-            color: #000 !important;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+from utils.background import set_background
 
  
     
@@ -76,16 +12,9 @@ def app():
     #     print(st.session_state)
     #     # st.query_params = {"page": "Login"}
     #     # st.rerun()
-    # else:
-        # st.title("🏠 Home Page")
-        # st.success(f"Welcome, {st.session_state['user']['email']}!")
-        
-        st.title('Welcome to :violet[I-DOC-TOOL] 📃')
+        st.title('Welcome to :violet[I-DOC TOOL] 📃')
         # Optional: Add a light background
-        set_background("assets/light_background_1.png")  # Optional background image
-        
-        # Header Section
-        # st.markdown("<h1 class='big-font'>📄 I-Doc-Tool</h1>", unsafe_allow_html=True)
+        set_background("assets/light_background_1.png")
         st.markdown("### Your Intelligent Document Companion")
 
         # Hero Section
@@ -98,7 +27,7 @@ def app():
                 <p style='font-size:17px;'>I-Doc-Tool helps you manage, analyze, and extract value from your documents in seconds with powerful AI tools.</p>
                 <ul>
                     <li>🔍 Smart Search Across Docs</li>
-                    <li>📁 Multi-format Uploads (PDF, DOCX, Text)</li>
+                    <li>📁 Multi-format Uploads (Images, PDF)</li>
                     <li>✏️ Annotate and Highlight Text</li>
                     <li>🔐 Secure Cloud-based Storage</li>
                     <li>⚙️ Role-based Access & Sessions</li>
@@ -131,15 +60,15 @@ def app():
         with f2:
             st.markdown("""
             <div class="subtle-box">
-            <h4>🔎 AI-powered Search</h4>
-            <p>Instantly search across documents using semantic AI search tools.</p>
+            <h4>🔎Easy & Smart Converter</h4>
+            <p>Instantly Convert documents using using OCR.</p>
             </div>
             """, unsafe_allow_html=True)
         with f3:
             st.markdown("""
             <div class="subtle-box">
-            <h4>🧠 Smart Summaries</h4>
-            <p>Summarize long files with AI and extract meaningful insights.</p>
+            <h4>🧠 Download & Export Documents</h4>
+            <p>Download your Documents in your specific Format.</p>
             </div>
             """, unsafe_allow_html=True)
 
@@ -152,7 +81,8 @@ def app():
         <ol style='font-size:17px;'>
             <li>Sign Up / Log In to your secure account</li>
             <li>Upload Documents in PDF, DOCX, or Text format</li>
-            <li>Use AI to Search, Annotate, and Summarize</li>
+            <li>Use Tesseract OCR to convert image,pdf to editable documents.</li>
+            <li>Download the editable document in you specific format.</li>
             <li>Collaborate with team members and export insights</li>
         </ol>
         </div>
