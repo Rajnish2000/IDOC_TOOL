@@ -6,3 +6,4 @@ cap_img.jpg
 latexFile_doc.docx
 assets/*
 temp/*
+utils/localEnv.py
