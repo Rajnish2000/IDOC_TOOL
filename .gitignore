@@ -1,3 +1,8 @@
 vision_key.json
 firebase_auth.py
 firebase_config.json
+captured_images.jpg
+cap_img.jpg
+latexFile_doc.docx
+assets/*
+temp/*

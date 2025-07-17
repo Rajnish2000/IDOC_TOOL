@@ -1,6 +1,7 @@
 import streamlit as st
 from firebase_auth import auth, db
 from firebase_auth import firebase_web_config
+from utils.background import set_background
 import requests
 
 def update_password(id_token, new_password, api_key):
@@ -16,7 +17,7 @@ def update_password(id_token, new_password, api_key):
 def app(user):
     uid = user['localId']
     print('uid : ',uid)
-    
+    set_background("assets/light_background_1.png")
     profile_ref = db.collection('users').document(uid).collection("profile").document("info")
     prefs_ref = db.collection('users').document(uid).collection("preferences").document("settings")    
     

@@ -1,6 +1,7 @@
 import streamlit as st
 from utils.background import set_background
 
+
 def app():
     # Inject styles and layout
     st.markdown("""
@@ -73,14 +74,18 @@ def app():
     st.title("📬 Contact Us")
     set_background("assets/light_background_1.png")
     st.markdown('<div class="contact-container">Have any questions? Fill out the form below and we’ll get back to you.', unsafe_allow_html=True)
-
-    name = st.text_input("Your Name")
-    email = st.text_input("Your Email")
-    message = st.text_area("Your Message")
-
     # Create the custom HTML button
     send_button_html = """
-        <form action="" method="post">
+        <form action="https://formsubmit.co/181d90d49d787db7df4a00041f9f02f9 " method="post" enctype="multipart/form-data">
+            <label for='name'> Your Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+            <label for='email'> Your Email</label>
+            <input type="email" name="email" placeholder="Your email" required>
+            <label for='_subject'> Your Subject</label>
+            <input type="text" name="_subject" placeholder="Your subject">
+            <label for='message'> Your Message</label>
+            <textarea name="message" placeholder="Details of your problem"></textarea>
+            <input type="hidden" name="_captcha" value="false">
             <button class="send-button" name="submit_btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -105,11 +110,9 @@ def app():
 
     # Handle logic
     if st.session_state["submitted"]:
-        if not name.strip() or not email.strip() or not message.strip():
-            st.error("Please fill in all the fields.")
-        else:
-            st.success("🎉 Thank you for contacting us! We'll respond shortly.")
-            st.session_state["submitted"] = False  # reset after success
+        st.success("🎉 Thank you for contacting us! We'll respond shortly.")
+        st.balloons()
+        st.session_state["submitted"] = False  # reset after success
 
     st.markdown("</div>", unsafe_allow_html=True)
     

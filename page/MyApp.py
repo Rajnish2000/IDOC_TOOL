@@ -3,10 +3,12 @@ import numpy as np
 import streamlit as st
 import google_cloud_vision
 from pylatexenc.latex2text import LatexNodes2Text
+from utils.background import set_background
 import main
 
 
 def app():
+    set_background("assets/light_background_1.png")
     #ui
     st.header("Text Extraction from Image")
     count = 12
@@ -34,9 +36,9 @@ def app():
         with two:
             st.image(processed_image, caption='Processed Image')
             st.write("Image Processed.")
-        
+        extracted_text = google_cloud_vision.detect_text("cap_img.jpg")
         st.subheader("Extracted Text:")
-        st.code(text)
+        st.code(extracted_text)
         st.download_button("Download Text File", main.get_docx(text), file_name="latexFile.txt", mime=None, key=None, help=None, on_click=None, args=None, kwargs=None, type="secondary", disabled=False, use_container_width=False)
         st.download_button("Download docx File", main.get_docx(text), file_name="latexFile_doc.docx", mime="docx")  
 
